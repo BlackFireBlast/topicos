@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model CategoryTable {
+  Id Int @id @default(autoincrement())
+  Category String
+  Topics Topic[]
+}
+
+model Topic {
+  Id Int @id @default(autoincrement())
+  Topic String 
+  Answer String
+  CategoryId Int 
+  categoryRelation CategoryTable @relation(fields:[CategoryId],references: [Id])
+  SubCategory String?
+  Level Int
+  DateToRepeat DateTime
+  PreviousDateToRepeat DateTime
+}
+
+
+// Login String @unique
+//   RegDate DateTime @default(now())
+//   UpdatedDate DateTime @updatedAt

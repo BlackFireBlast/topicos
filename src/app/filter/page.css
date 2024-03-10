@@ -1,0 +1,48 @@
+
+.search-type {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search {
+    width: 100%;
+    height: 16vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:aqua
+}
+
+.search > input {
+    width: 250px;
+}
+.input-container {
+    position:relative;
+}
+ .input-container::after {
+    /* display:none; */
+    content: "No dejes el campo vacio";
+    font-size: 12px;
+    /* width:30px;
+    height:30px; */
+    position:absolute;
+    color:rgb(255, 255, 255);
+    left: -0px;
+    top:2rem;
+    background-color: rgb(255, 0, 0);
+    /* border-radius: 10px; */
+    padding: 0 15px;
+}
+
+.noResults {
+    color:var(--color4);
+  font-size:1.2rem;
+  text-align: center;
+}
