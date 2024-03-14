@@ -1,7 +1,7 @@
 'use client'
 import axios from 'axios'
 import {useEffect, useReducer, useState,useRef} from 'react'
-import countDays from '../../../components/countDays'
+import countDays from '../../../utils/countDays'
 import { useRouter } from 'next/navigation'
 
 const page = () => {

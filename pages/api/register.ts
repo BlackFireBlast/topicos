@@ -1,6 +1,6 @@
 import { NextApiRequest,NextApiResponse } from "next";
 import {prisma} from '../../lib/prisma'
-import countDays from "../../components/countDays";
+import countDays from "../../utils/countDays";
 
 export default async function handler(
     req: NextApiRequest,
@@ -38,17 +38,24 @@ export default async function handler(
             newPeriod=numDays
         }else{
             if(numDays == 0){newPeriod=1}
-            else if(numDays >0 && numDays<=2){newPeriod=7}
-            else if(numDays >2 && numDays<=8){newPeriod=16}
-            else if(numDays >8 && numDays<=17){newPeriod=35}
-            else if(numDays >17 && numDays<=36){newPeriod=60}
-            else if(numDays >36 && numDays<=61){newPeriod=90}
-            else if(numDays >61 && numDays<=91){newPeriod=120}
-            else if(numDays >91 && numDays<=121){newPeriod=150}
-            else if(numDays >121){newPeriod=180}
+            else if(numDays >0 && numDays<=1){newPeriod=2}
+            else if(numDays >1 && numDays<=2){newPeriod=3}
+            else if(numDays >2 && numDays<=3){newPeriod=7}
+            else if(numDays >3 && numDays<=7){newPeriod=16}
+            else if(numDays >7 && numDays<=16){newPeriod=35}
+            else if(numDays >16 && numDays<=35){newPeriod=60}
+            else if(numDays >35 && numDays<=60){newPeriod=90}
+            else if(numDays >60 && numDays<=90){newPeriod=120}
+            else if(numDays >90 && numDays<=120){newPeriod=150}
+            else if(numDays >120){newPeriod=180}
         }
         const newDate = new Date()
         newDate.setTime(newDate.getTime()+ newPeriod*24*60*60*1000)
+        console.log('Lógica de actualización')
+        console.log('NumDias:'+numDays)
+        console.log('newPeriod:'+newPeriod)
+        console.log('Anterior:'+DateToRepeat)
+        console.log('Siguiente:'+newDate)
         const post = await prisma.topic.update({
             where: {Id:Id},
             data: {
